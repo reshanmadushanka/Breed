@@ -66,16 +66,20 @@
                                 <th scope="col">Stranger Friendly</th>
                                 <th scope="col">Energy Level</th>
                                 <th scope="col">Imperial</th>
-                                <th scope="col">Adaptability</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($breed as $item)
                             <tr>
                                 <th>{{$item->name}}</th>
-                                <th>{{$item->name}}</th>
-                                <th>{{$item->name}}</th>
-                                <th>{{$item->name}}</th>
+                                <th>{{$item->description}}</th>
+                                <th>{{$item->affection_level}}</th>
+                                <th>{{$item->adaptability}}</th>
+                                <th>{{$item->affection_level}}</th>
+                                <th>{{$item->child_friendly}}</th>
+                                <th>{{$item->stranger_friendly}}</th>
+                                <th>{{$item->energy_level}}</th>
+                                <th>{{$item->weight}}</th>
                             </tr>
                             @empty
 
