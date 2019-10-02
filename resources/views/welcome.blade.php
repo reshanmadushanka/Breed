@@ -1,100 +1,92 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Breeds</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                    <form action="{{url('breed')}}" method="POST">
+                        @csrf
+                        <div class="form-group col-md-3">
+                            <label for="adapt">Adaptability</label>
+                            <input type="number" class="form-control" name="adaptability" id="adaptability">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="affection_level">Affection Level</label>
+                            <input type="number" name="affection_level" class="form-control">
+                        </div>
 
-            .full-height {
-                height: 100vh;
-            }
+                        <div class="form-group col-md-3">
+                            <label for="child_friendly">Child Friendly</label>
+                            <input type="number" name="child_friendly" class="form-control">
+                        </div>
+                        <div class="form-group col-md-10">
+                            <label for="description">description</label>
+                            <textarea id="description" class="form-control" name="description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="energy_level">Energy Level</label>
+                            <input type="number" name="energy_level" class="form-control">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="energy_level">Name</label>
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="energy_level">Weight</label>
+                            <input type="numberS" name="weight" class="form-control">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="energy_level">Stranger Friendly</label>
+                            <input type="number" name="stranger_friendly" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
                 </div>
-            @endif
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name,</th>
+                                <th scope="col">Description,</th>
+                                <th scope="col">Adaptability</th>
+                                <th scope="col">Affection Level</th>
+                                <th scope="col">Child Friendly</th>
+                                <th scope="col">Stranger Friendly</th>
+                                <th scope="col">Energy Level</th>
+                                <th scope="col">Imperial</th>
+                                <th scope="col">Adaptability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($breed as $item)
+                            <tr>
+                                <th>{{$item->name}}</th>
+                                <th>{{$item->name}}</th>
+                                <th>{{$item->name}}</th>
+                                <th>{{$item->name}}</th>
+                            </tr>
+                            @empty
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                            @endforelse
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection
